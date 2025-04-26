@@ -56,7 +56,7 @@ class Seek extends Command {
 		if (time > player.queue.current.duration) {
 			message.channel.send(message.translate('music/seek:INVALID', { TIME: new Date(player.queue.current.duration).toISOString().slice(11, 19) }));
 		} else {
-			player.seek(time);
+			await player.seek(time);
 			const embed = new EmbedBuilder()
 				.setColor(message.member.displayHexColor)
 				.setDescription(message.translate('music/seek:UPDATED', { TIME: new Date(time).toISOString().slice(14, 19) }));

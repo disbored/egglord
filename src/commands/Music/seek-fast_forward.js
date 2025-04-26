@@ -55,7 +55,7 @@ class SeekFastForward extends Command {
 		if (time + player.position >= player.queue.current.duration) {
 			message.channel.send(message.translate('music/fast-forward:TOO_LONG', { TIME: new Date(player.queue.current.duration).toISOString().slice(14, 19) }));
 		} else {
-			player.seek(player.position + time);
+			await player.seek(player.position + time);
 			const embed = new Embed(bot, message.guild)
 				.setColor(message.member.displayHexColor)
 				.setDescription(message.translate('music/fast-forward:DESC', { NEW: new Date(player.position).toISOString().slice(14, 19), OLD: getReadableTime(time) }));
@@ -89,7 +89,7 @@ class SeekFastForward extends Command {
 		if (time + player.position >= player.queue.current.duration) {
 			interaction.reply(guild.translate('music/fast-forward:TOO_LONG', { TIME: new Date(player.queue.current.duration).toISOString().slice(14, 19) }));
 		} else {
-			player.seek(player.position + time);
+			await player.seek(player.position + time);
 			const embed = new Embed(bot, guild)
 				.setColor(member.displayHexColor)
 				.setDescription(guild.translate('music/fast-forward:DESC', { NEW: new Date(player.position).toISOString().slice(14, 19), OLD: getReadableTime(time) }));

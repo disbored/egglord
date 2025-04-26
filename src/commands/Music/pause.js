@@ -42,7 +42,7 @@ class Pause extends Command {
 		if (player.paused) return message.channel.error('music/pause:IS_PAUSED', { PREFIX: settings.prefix });
 
 		// Pauses the music
-		player.pause(true);
+		await player.pause(true);
 		return message.channel.success('music/pause:SUCCESS');
 	}
 
@@ -66,7 +66,7 @@ class Pause extends Command {
 		if (player.paused) return interaction.reply({ ephemeral: true, embeds: [channel.error('music/pause:IS_PAUSED', {}, true)] });
 
 		// Pauses the music
-		player.pause(true);
+		await player.pause(true);
 		return interaction.reply({ embeds: [channel.success('music/pause:SUCCESS', {}, true)] });
 	}
 }

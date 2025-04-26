@@ -43,7 +43,7 @@ class Resume extends Command {
 		if (!player.paused) return message.channel.error('music/resume:IS_RESUMED', { PREFIX: settings.prefix });
 
 		// Resumes the music
-		player.pause(false);
+		await player.pause(false);
 		return message.channel.success('music/resume:SUCCESS');
 	}
 
@@ -67,7 +67,7 @@ class Resume extends Command {
 		if (!player.paused) return interaction.reply({ ephemeral: true, embeds: [channel.error('music/resume:IS_RESUMED', {}, true)] });
 
 		// Resumes the music
-		player.pause(false);
+		await player.pause(false);
 		return interaction.reply({ embeds: [channel.success('music/resume:SUCCESS', {}, true)] });
 	}
 }

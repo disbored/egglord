@@ -39,11 +39,11 @@ class Back extends Command {
 
 		// Make sure there was a previous song
 		const player = bot.manager?.players.get(message.guild.id);
-		if (player.queue.previous == null) return message.channel.send(message.translate('music/back:NO_PREV'));
+		if (!player.queue.previous.length) return message.channel.send(message.translate('music/back:NO_PREV'));
 
 		// Start playing the previous song
-		player.queue.unshift(player.queue.previous);
-		player.stop();
+		player.queue.unshift(player.queue.previous[0].track);
+		await player.stop();
 	}
 
 	/**
@@ -63,11 +63,11 @@ class Back extends Command {
 
 		// Make sure there was a previous song
 		const player = bot.manager?.players.get(member.guild.id);
-		if (player.queue.previous == null) return interaction.reply({ content: guild.translate('music/back:NO_PREV') });
+		if (!player.queue.previous.length) return interaction.reply({ content: guild.translate('music/back:NO_PREV') });
 
 		// Start playing the previous song
-		player.queue.unshift(player.queue.previous);
-		player.stop();
+		player.queue.unshift(player.queue.previous[0].track);
+		await player.stop();
 	}
 }
 

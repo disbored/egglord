@@ -15,7 +15,9 @@ class AudioManager extends Manager {
 				if (guild) guild.shard.send(payload);
 			},
 			clientName: bot.user?.username ?? 'magmastream',
-			defaultSearchPlatform: 'youtube',
+			defaultSearchPlatform: 'ytsearch',
+			autoPlay: false,
+			maxPreviousTracks: 10,
 		});
 	}
 }

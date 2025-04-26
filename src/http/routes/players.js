@@ -31,7 +31,7 @@ module.exports = (bot) => {
 		const player = bot.manager?.players.get(req.params.guildId);
 		if (player) {
 			// update player
-			player.stop();
+			await player.stop();
 			res.status(200).json({ success: 'Successfully skipped song!' });
 		} else {
 			// fetch guild's basic information
@@ -40,12 +40,12 @@ module.exports = (bot) => {
 	});
 
 	// Change volume of the song
-	router.get('/:guildId/volume', (req, res) => {
+	router.get('/:guildId/volume', async (req, res) => {
 		const player = bot.manager?.players.get(req.params.guildId);
 		if (player) {
 			const volume = req.query.num;
 			if (volume && Number(volume) > 0 && Number(volume) < 1000) {
-				player.setVolume(Number(volume));
+				await player.setVolume(Number(volume));
 				res.status(200).json({ success: 'Successfully updated player\'s volume!' });
 			} else {
 				res.status(400).json({ error: 'Please specify a volume.' });
@@ -82,20 +82,20 @@ module.exports = (bot) => {
 	});
 
 	// Pause the song
-	router.get('/:guildId/pause', (req, res) => {
+	router.get('/:guildId/pause', async (req, res) => {
 		const player = bot.manager?.players.get(req.params.guildId);
 		if (player) {
-			player.pause(true);
+			await player.pause(true);
 		} else {
 			res.status(400).json({ error: 'No music playing in that guild.' });
 		}
 	});
 
 	// Resume the song
-	router.get('/:guildId/resume', (req, res) => {
+	router.get('/:guildId/resume', async (req, res) => {
 		const player = bot.manager?.players.get(req.params.guildId);
 		if (player) {
-			player.pause(false);
+			await player.pause(false);
 		} else {
 			res.status(400).json({ error: 'No music playing in that guild.' });
 		}

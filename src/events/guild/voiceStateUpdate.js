@@ -91,10 +91,10 @@ class VoiceStateUpdate extends Event {
 				try {
 					await newState.guild.members.me.voice.setSuppressed(false).then(() => console.log(null));
 				} catch (err) {
-					player.pause(true);
+					await player.pause(true);
 				}
 			} else if (oldState.suppress !== newState.suppress) {
-				player.pause(newState.suppress);
+				await player.pause(newState.suppress);
 			}
 		}
 

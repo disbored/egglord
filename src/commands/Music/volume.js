@@ -59,7 +59,7 @@ class Volume extends Command {
 		if (Number(message.args[0]) <= 0 || Number(message.args[0]) > 1000) return message.channel.error('music/volume:TOO_HIGH');
 
 		// Update volume
-		player.setVolume(Number(message.args));
+		await player.setVolume(Number(message.args));
 		const embed = new Embed(bot, message.guild)
 			.setColor(message.member.displayHexColor)
 			.setDescription(message.translate('music/volume:UPDATED', { NUM: player.volume }));
@@ -93,7 +93,7 @@ class Volume extends Command {
 		}
 
 		// Update volume
-		player.setVolume(volume);
+		await player.setVolume(volume);
 		const embed = new Embed(bot, guild)
 			.setColor(member.displayHexColor)
 			.setDescription(guild.translate('music/volume:UPDATED', { NUM: player.volume }));

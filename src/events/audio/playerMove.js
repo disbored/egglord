@@ -32,9 +32,9 @@ class PlayerMove extends Event {
 			player.destroy();
 		} else {
 			await player.setVoiceChannel(newChannel);
-			player.pause(true);
+			await player.pause(true);
 			await bot.delay(1000);
-			player.pause(false);
+			await player.pause(false);
 		}
 	}
 }

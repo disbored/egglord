@@ -56,7 +56,7 @@ class SeekRewind extends Command {
 		if (time + player.position <= 0) {
 			message.channel.send(message.translate('music/rewind:INVALID'));
 		} else {
-			player.seek(player.position - time);
+			await player.seek(player.position - time);
 			const embed = new Embed(bot, message.guild)
 				.setColor(message.member.displayHexColor)
 				.setDescription(message.translate('music/rewind:NEW_TIME', { NEW: new Date(player.position).toISOString().slice(14, 19), OLD: getReadableTime(time) }));
@@ -90,7 +90,7 @@ class SeekRewind extends Command {
 		if (time + player.position <= 0) {
 			return interaction.reply({ ephemeral: true, embeds: [channel.error('music/rewind:INVALID', { ERROR: null }, true)] });
 		} else {
-			player.seek(player.position - time);
+			await player.seek(player.position - time);
 			const embed = new Embed(bot, guild)
 				.setColor(member.displayHexColor)
 				.setDescription(guild.translate('music/rewind:NEW_TIME', { NEW: new Date(player.position).toISOString().slice(14, 19), OLD: getReadableTime(time) }));

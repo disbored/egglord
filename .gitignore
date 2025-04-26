@@ -1,5 +1,7 @@
 node_modules
 config.js
+pnpm-lock.yaml
+magmastream/
 Lavalink/logs
 src/commands/Host/test.js
 src/utils/logs/roll-????.??.??.log

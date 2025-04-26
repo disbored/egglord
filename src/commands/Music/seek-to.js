@@ -56,7 +56,7 @@ class SeekTo extends Command {
 		if (time + player.position <= 0) {
 			message.channel.send(message.translate('music/rewind:INVALID'));
 		} else {
-			player.seek(player.position - time);
+			await player.seek(player.position - time);
 			const embed = new Embed(bot, message.guild)
 				.setColor(message.member.displayHexColor)
 				.setDescription(message.translate('music/rewind:NEW_TIME', { NEW: new Date(player.position).toISOString().slice(14, 19), OLD: getReadableTime(time) }));
@@ -87,7 +87,7 @@ class SeekTo extends Command {
 		if (time > player.queue.current.duration) {
 			return interaction.reply({ ephemeral: true, embeds: [channel.error('music/seek:INVALID', { TIME: new Date(player.queue.current.duration).toISOString().slice(11, 19) }, true)] });
 		} else {
-			player.seek(time);
+			await player.seek(time);
 			const embed = new EmbedBuilder()
 				.setColor(member.displayHexColor)
 				.setDescription(bot.translate('music/seek:UPDATED', { TIME: new Date(time).toISOString().slice(14, 19) }));
