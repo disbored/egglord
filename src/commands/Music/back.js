@@ -42,8 +42,7 @@ class Back extends Command {
 		if (!player.queue.previous.length) return message.channel.send(message.translate('music/back:NO_PREV'));
 
 		// Start playing the previous song
-		player.queue.unshift(player.queue.previous[0].track);
-		await player.stop();
+		await player.previous();
 	}
 
 	/**
@@ -66,8 +65,7 @@ class Back extends Command {
 		if (!player.queue.previous.length) return interaction.reply({ content: guild.translate('music/back:NO_PREV') });
 
 		// Start playing the previous song
-		player.queue.unshift(player.queue.previous[0].track);
-		await player.stop();
+		await player.previous();
 	}
 }
 
